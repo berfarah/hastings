@@ -8,7 +8,7 @@ describe Hastings::Basic::Loop do
 
   describe "#each" do
     context "with an Enumerable" do
-      it "should proxy each" do
+      it "proxies each" do
         arr = [1, 2, 3]
         expect(each_inspect[arr]).to eq(arr.each.inspect)
 
@@ -24,23 +24,23 @@ describe Hastings::Basic::Loop do
     end
 
     context "with a String" do
-      it "should split by line ending" do
+      it "splits by line ending" do
         expect(enum_inspect["some\nstring\nhere"]).to eq(%w(some string here))
       end
 
-      it "should split by commas" do
+      it "splits by commas" do
         expect(enum_inspect["some,string,here"]).to eq(%w(some string here))
       end
     end
 
     context "with a Fixnum" do
-      it "should iterate n times" do
+      it "iterates n times" do
         expect(enum_inspect[5]).to eq(1..5)
       end
     end
 
     context "with a new Object" do
-      it "should fail" do
+      it "fails" do
         expect do
           described_class.new(Object.new)
         end.to raise_error(NotImplementedError)
