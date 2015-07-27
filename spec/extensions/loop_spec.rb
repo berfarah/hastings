@@ -1,6 +1,6 @@
-require "hastings/basic/loop"
+require "hastings/extensions/loop"
 
-describe Hastings::Basic::Loop do
+describe Hastings::Loop do
   let(:each_inspect) { -> (arg) { described_class.new(arg).each.inspect } }
   let(:enum_inspect) do
     -> (arg) { described_class.new(arg).instance_variable_get("@enum") }
