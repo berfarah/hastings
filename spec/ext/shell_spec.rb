@@ -1,4 +1,4 @@
-require "hastings/extensions/shell"
+require "hastings/ext/shell"
 
 describe Hastings::Shell do
   subject { described_class.new }

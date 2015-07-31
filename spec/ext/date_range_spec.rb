@@ -1,4 +1,4 @@
-require "hastings/extensions/date_range"
+require "hastings/ext/date_range"
 
 describe Hastings::DateRange do
   describe "#include?" do

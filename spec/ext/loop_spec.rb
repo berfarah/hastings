@@ -1,4 +1,4 @@
-require "hastings/extensions/loop"
+require "hastings/ext/loop"
 
 describe Hastings::Loop do
   let(:each_inspect) { -> (arg) { described_class.new(arg).each.inspect } }

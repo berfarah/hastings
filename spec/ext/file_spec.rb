@@ -1,5 +1,5 @@
-require "hastings/extensions/file"
-require "hastings/extensions/date_range"
+require "hastings/ext/file"
+require "hastings/ext/date_range"
 
 describe Hastings::File do
   subject(:foo) { described_class.new("foo") }

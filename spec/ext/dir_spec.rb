@@ -1,4 +1,4 @@
-require "hastings/extensions/dir"
+require "hastings/ext/dir"
 
 describe Hastings::Dir do
   subject(:foo_bar) { described_class.new("foo_bar") }
