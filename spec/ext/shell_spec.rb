@@ -20,10 +20,11 @@ describe Hastings::Shell do
     context "when the command returns a non-zero exit code" do
       it "raises a Shell::Error" do
         err_msg = "my_error_message"
+        cmd = "echo #{err_msg} >&2 ; exit 1"
 
         expect do
-          subject.run("echo #{err_msg} >&2 ; exit 1")
-        end.to raise_error(Hastings::Shell::Error, err_msg)
+          subject.run(cmd)
+        end.to raise_error(Hastings::Shell::Error, [cmd, err_msg].join("\n"))
       end
 
       context "when instantiated with raise_error:false" do

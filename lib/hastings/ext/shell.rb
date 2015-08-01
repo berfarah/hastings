@@ -16,13 +16,14 @@ module Hastings
     end
 
     def run(str)
-      shell(*Shellwords.split(str.shellescape))
+      @cmd = Shellwords.split(str.shellescape)
+      shell
     end
 
     private
 
-      def shell(*cmd)
-        Open3.popen3(*cmd) do |_stdin, stdout, stderr, p|
+      def shell
+        Open3.popen3(*@cmd) do |_stdin, stdout, stderr, p|
           @stdout = stdout.read.strip
           @stderr = stderr.read.strip
           @status = p.value.exitstatus
@@ -32,7 +33,8 @@ module Hastings
       end
 
       def fail_on_error!
-        @status == 0 || @raise_error && fail(Error, @stderr)
+        @status == 0 || @raise_error && fail(
+          Error, [@cmd.join(" "), @stderr].join("\n"))
       end
   end
 end
