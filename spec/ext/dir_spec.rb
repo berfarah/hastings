@@ -1,6 +1,6 @@
 require "hastings/ext/dir"
 
-describe Hastings::Dir do
+describe Hastings::Dir, ftp: true do
   subject(:foo_bar) { described_class.new("foo_bar") }
   let(:path) { -> (arr) { arr.map(&:path) } }
   before(:all) do
@@ -47,13 +47,6 @@ describe Hastings::Dir do
         expect(
           path[foo_bar.files "baz*", created_on: Date.today]
         ).to eq(path[[files_arr.first]])
-      end
-
-      it "matches by multiple criteria" do
-        pending("having more than one criteria that can be chained")
-        expect(
-          path[foo_bar.files created_on: Date.today, some_method: nil]
-        ).to eq(path[files_arr])
       end
     end
   end
