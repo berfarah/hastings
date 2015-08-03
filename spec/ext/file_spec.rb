@@ -1,4 +1,5 @@
 require "hastings/ext/file"
+require "hastings/ext/dir"
 require "hastings/ext/date_range"
 
 describe Hastings::File do
@@ -73,6 +74,14 @@ describe Hastings::File do
       it "shouldn't overwrite if overwrite is disabled" do
         expect(foo.copy_to("bar", overwrite: false)).to be nil
         expect(foo.copy_to("bar", overwrite: false)).to be false
+      end
+
+      context "given a dir object" do
+        it "should copy the file to the directory" do
+          dir = Dir.new("bar")
+          foo.copy_to(dir)
+          expect(File.exist? "bar/foo").to be true
+        end
       end
     end
 
