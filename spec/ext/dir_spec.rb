@@ -39,13 +39,13 @@ describe Hastings::Dir, ftp: true do
     context "when passed hash args" do
       it "filters by criteria" do
         expect(
-          path[foo_bar.files created_on: Date.today]
+          path[foo_bar.files created_on?: Date.today]
         ).to eq(path[files_arr])
       end
 
       it "matches files by glob and criteria" do
         expect(
-          path[foo_bar.files "baz*", created_on: Date.today]
+          path[foo_bar.files "baz*", created_on?: Date.today]
         ).to eq(path[[files_arr.first]])
       end
     end
